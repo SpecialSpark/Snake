@@ -1,4 +1,5 @@
 //imports for later
+import java.awt.GridLayout;
 import java.util.ArrayList;
 
 
@@ -24,5 +25,21 @@ class Window extends JFrame{
             }
             grid.add(data);
         }
+        // setting up layout of the panels
+        getContentPane().setLayout(new GridLayout(20,20,0,0));
+
+        // Start & Pause all threads, then adds every square of each thread to the panel
+        for(int i = 0; i < width; i++) {
+            for(int j = 0; j < width; j++) {
+                getContentPane().add(grid.get(i).get(j).square);
+            }
+        }
+        // inital position of the snake
+        Tuple position = new Tuple(10,10);
+        // passing this value to the controller
+        ThreadsController controls = new ThreadsController(position);
+        // start game
+        controls.start();
+        //Links the window to the keyboardListener
     }
 }
